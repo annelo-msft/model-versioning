@@ -81,9 +81,12 @@ namespace Azure.Core
                 case System.Text.Json.JsonElement json:
                     json.WriteTo(writer);
                     break;
+
+                // Added
                 case System.Text.Json.JsonProperty json:
                     json.WriteTo(writer);
                     break;
+
                 case int i:
                     writer.WriteNumberValue(i);
                     break;
