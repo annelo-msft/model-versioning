@@ -15,6 +15,6 @@ namespace RoundTripJsonNode
         public string Foo { get; internal set; }
         public string Bar { get; internal set; }
 
-        internal IList<JsonProperty> UnknownProperties { get; set; }
+        internal IDictionary<string, JsonNode> UnknownProperties { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using Azure.Core;
 
 namespace RoundTripJsonNode
 {
-    public partial class Model
+    public partial class Model : IUtf8JsonSerializable, IUtf8JsonDeserializable<Model>
     {
         // These are internal in client libraries.
         public void Write(Utf8JsonWriter writer)
@@ -24,7 +24,8 @@ namespace RoundTripJsonNode
             {
                 foreach (var property in UnknownProperties)
                 {
-                    writer.WriteObjectValue(property);
+                    writer.WritePropertyName(property.Key);
+                    property.Value.WriteTo(writer);
                 }
             }
 
@@ -34,33 +35,61 @@ namespace RoundTripJsonNode
             writer.Flush();
         }
 
-        // These are internal in client libraries.
-        public static Model Deserialize(JsonElement element)
+        public static Model Deserialize(Utf8JsonReader reader)
         {
             Model model = new Model();
+            return model.Read(reader, model);
+        }
 
-            foreach (var property in element.EnumerateObject())
+        // These are internal in client libraries.
+        public Model Read(Utf8JsonReader reader, Model value)
+        {
+            while (reader.Read())
             {
-                if (property.NameEquals("foo"))
+                switch (reader.TokenType)
                 {
-                    model.Foo = property.Value.GetString();
-                    continue;
-                }
-                else if (property.NameEquals("bar"))
-                {
-                    model.Bar = property.Value.GetString();
-                    continue;
-                }
+                    case JsonTokenType.PropertyName:
+                        {
+                            if (reader.ValueTextEquals("foo"))
+                            {
+                                reader.Skip();
+                                value.Foo = reader.GetString();
+                                continue;
+                            }
 
-                // handle unknown properties
-                if (model.UnknownProperties == null)
-                {
-                    model.UnknownProperties = new List<JsonProperty>();
-                    model.UnknownProperties.Add(property);
+                            if (reader.ValueTextEquals("bar"))
+                            {
+                                reader.Skip();
+                                value.Bar = reader.GetString();
+                                continue;
+                            }
+
+                            // We don't recognize this property
+                            // Store it in Unknown
+                            if (value.UnknownProperties == null)
+                            {
+                                value.UnknownProperties = new Dictionary<string, JsonNode>();
+                            }
+
+                            string name = reader.GetString();
+                            reader.Read();
+                            JsonNode nodeValue = JsonNode.Parse(ref reader);
+                            value.UnknownProperties.Add(name, nodeValue);
+                        }
+                        break;
+
+                    // For now, ignore complexity
+                    case JsonTokenType.StartObject:
+                    case JsonTokenType.EndObject:
+                        break;
+
+                    default:
+                        // Silent - log a warning.
+                        break;
                 }
             }
 
-            return model;
+            return value;
         }
     }
 }

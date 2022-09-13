@@ -9,7 +9,10 @@ Console.WriteLine("Hello, World!");
 // "baz" is added in v2 and starts being returned from v1 GET operations
 string jsonIn = "{ \"foo\": \"a\", \"bar\": \"b\", \"baz\": \"c\" }";
 
-Model model = Model.Deserialize(JsonDocument.Parse(jsonIn).RootElement);
+byte[] utf8In = Encoding.UTF8.GetBytes(jsonIn);
+Utf8JsonReader jsonReader = new Utf8JsonReader(utf8In);
+
+Model model = Model.Deserialize(jsonReader);
 
 using var stream = new MemoryStream();
 using var writer = new Utf8JsonWriter(stream);
