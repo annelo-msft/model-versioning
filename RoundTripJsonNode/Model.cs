@@ -8,5 +8,13 @@ using System.Threading.Tasks;
 
 namespace RoundTripJsonNode
 {
+    public partial class Model
+    {
+        public Model() { }
 
+        public string Foo { get; internal set; }
+        public string Bar { get; internal set; }
+
+        internal IList<JsonProperty> UnknownProperties { get; set; }
+    }
 }
