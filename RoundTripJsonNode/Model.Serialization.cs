@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using Azure.Core;
 
 namespace RoundTripJsonNode
 {
@@ -23,7 +24,7 @@ namespace RoundTripJsonNode
             {
                 foreach (var property in UnknownProperties)
                 {
-                    property.WriteTo(writer);
+                    writer.WriteObjectValue(property);
                 }
             }
 
