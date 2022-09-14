@@ -37,10 +37,15 @@ namespace DeserializeArray
                 writer.WriteEndArray();
             }
 
-            if (Child != null)
+            if (Children != null)
             {
-                writer.WritePropertyName("child");
-                writer.WriteObjectValue(Child);
+                writer.WritePropertyName("children");
+                writer.WriteStartArray();
+                foreach (var item in Children)
+                {
+                    writer.WriteObjectValue(item);
+                }
+                writer.WriteEndArray();
             }
 
             if (UnknownProperties != null)
@@ -113,9 +118,9 @@ namespace DeserializeArray
                                 continue;
                             }
 
-                            if (reader.ValueTextEquals("child"))
+                            if (reader.ValueTextEquals("children"))
                             {
-                                Child = ChildModel.Deserialize(ref reader);
+                                Children = reader.ReadArray<ChildModel>();
                                 continue;
                             }
 

@@ -7,7 +7,7 @@ using System.Text.Json;
 Console.WriteLine("Hello, World!");
 
 // Model with ChildModel
-string jsonIn = "{ \"foo\": \"a\", \"bar\": \"b\", \"child\": { \"qux\": 1, \"thud\": true } }";
+string jsonIn = "{ \"foo\": \"a\", \"bar\": \"b\", \"children\": [ { \"qux\": 1, \"thud\": true },  { \"qux\": 2, \"thud\": false },  { \"qux\": 3, \"thud\": true } ] }";
 
 byte[] utf8In = Encoding.UTF8.GetBytes(jsonIn);
 Utf8JsonReader jsonReader = new Utf8JsonReader(utf8In);
