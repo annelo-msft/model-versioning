@@ -7,9 +7,8 @@ using System.Text.Json;
 
 namespace Azure.Core
 {
-    // note, come back and handle reference case - seems doable
-    internal interface IUtf8JsonDeserializable<T> where T : class
+    internal interface IUtf8JsonDeserializable
     {
-        T Read(ref Utf8JsonReader read, T value);
+        void Read(ref Utf8JsonReader reader);
     }
 }

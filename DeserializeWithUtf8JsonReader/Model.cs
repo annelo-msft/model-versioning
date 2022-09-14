@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
-namespace ReadFromDeserializable
+namespace DeserializeArray
 {
     public partial class Model
     {
@@ -14,6 +14,8 @@ namespace ReadFromDeserializable
 
         public string Foo { get; internal set; }
         public string Bar { get; internal set; }
+
+        public IList<int> Values { get; internal set; }
 
         public Model ModelProperty { get; internal set; }
 

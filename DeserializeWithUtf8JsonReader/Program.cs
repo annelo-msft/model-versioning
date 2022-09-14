@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using ReadFromDeserializable;
+using DeserializeArray;
 using System;
 using System.Text;
 using System.Text.Json;
