@@ -19,3 +19,7 @@ Question: why do we have to take it as a parameter?
 - Because `Read` is an instance method and not a static method, we must have an instance of `T` in order to call read.  The static `Deserialize` method creates this instance and calls `Read` on it.
  
 - Note: we can probably simplify this - why not just call `Read` on `T` to populate it and then return `T` from `Deserialize`?  What does passing and returning `T value` add?
+
+
+`Read` takes `Utf8JsonReader reader` as ref, because if it does not, the position is not maintained when it returns from child Deserialize class.
+TODO: go deeper on .NET ref structs.
