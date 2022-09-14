@@ -14,6 +14,7 @@ namespace DeserializeArray
 
         public string Foo { get; internal set; }
         public string Bar { get; internal set; }
+        public ChildModel Child { get; internal set; }
 
         public IList<int> Values { get; internal set; }
 

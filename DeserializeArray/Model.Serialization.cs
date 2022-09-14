@@ -37,6 +37,12 @@ namespace DeserializeArray
                 writer.WriteEndArray();
             }
 
+            if (Child != null)
+            {
+                writer.WritePropertyName("child");
+                writer.WriteObjectValue(Child);
+            }
+
             if (UnknownProperties != null)
             {
                 foreach (var property in UnknownProperties)
@@ -104,6 +110,12 @@ namespace DeserializeArray
                             if (reader.ValueTextEquals("values"))
                             {
                                 Values = reader.ReadIntArray();
+                                continue;
+                            }
+
+                            if (reader.ValueTextEquals("child"))
+                            {
+                                Child = ChildModel.Deserialize(ref reader);
                                 continue;
                             }
 

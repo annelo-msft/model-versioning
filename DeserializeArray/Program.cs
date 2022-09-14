@@ -6,16 +6,13 @@ using System.Text.Json;
 
 Console.WriteLine("Hello, World!");
 
-//string jsonIn = "{ \"foo\": \"a\", \"bar\": \"b\", \"model\": { \"foo\": \"aa\", \"bar\": \"bb\" }, \"values\": [ 1, 2, 3 ] }";
-
-// child model
-string jsonIn = "{ \"qux\": 1, \"thud\": true }";
-
+// Model with ChildModel
+string jsonIn = "{ \"foo\": \"a\", \"bar\": \"b\", \"child\": { \"qux\": 1, \"thud\": true } }";
 
 byte[] utf8In = Encoding.UTF8.GetBytes(jsonIn);
 Utf8JsonReader jsonReader = new Utf8JsonReader(utf8In);
 
-ChildModel model = ChildModel.Deserialize(ref jsonReader);
+Model model = Model.Deserialize(ref jsonReader);
 
 using var stream = new MemoryStream();
 using var writer = new Utf8JsonWriter(stream);
