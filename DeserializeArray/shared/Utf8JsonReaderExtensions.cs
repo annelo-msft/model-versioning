@@ -14,17 +14,31 @@ namespace Azure.Core
 {
     internal static class Utf8JsonReaderExtensions
     {
-        //public static void ReadObjectValue(this Utf8JsonReader reader, JsonTokenType tokenType)
-        //{
-        //    switch (tokenType)
-        //    {
-        //        case JsonTokenType.Null:
-                    
-        //            break;
 
-        //        default:
-        //            Console.WriteLine(tokenType.ToString());
-        //    }
-        //}
+        public static List<int> ReadIntArray(this Utf8JsonReader reader)
+        {
+            List<int> list = new List<int>();
+
+            while (reader.Read())
+            {
+                switch (reader.TokenType)
+                {
+                    case JsonTokenType.StartArray:
+                        break;
+
+                    case JsonTokenType.EndArray:
+                        return list;
+
+                    case JsonTokenType.Number:
+                        list.Add(reader.GetInt32());
+                        break;
+
+                    default:
+                        throw new FormatException();
+                }
+            }
+
+            return list;
+        }
     }
 }

@@ -26,6 +26,17 @@ namespace DeserializeArray
                 writer.WriteObjectValue(ModelProperty);
             }
 
+            if (Values != null)
+            {
+                writer.WritePropertyName("values");
+                writer.WriteStartArray();
+                foreach (var item in Values)
+                {
+                    writer.WriteNumberValue(item);
+                }
+                writer.WriteEndArray();
+            }
+
             if (UnknownProperties != null)
             {
                 foreach (var property in UnknownProperties)
@@ -61,6 +72,12 @@ namespace DeserializeArray
                     case JsonTokenType.EndObject:
                         return;
 
+                    case JsonTokenType.StartArray:
+                        break;
+
+                    case JsonTokenType.EndArray:
+                        break;
+
                     case JsonTokenType.PropertyName:
                         {
                             if (reader.ValueTextEquals("foo"))
@@ -80,8 +97,13 @@ namespace DeserializeArray
                             if (reader.ValueTextEquals("model"))
                             {
                                 // We don't do a Read/Skip here b/c it will happen in Deserialize
-                                ModelProperty = Model.Deserialize(ref reader);
-                                Console.Write(reader.Position);
+                                ModelProperty = Deserialize(ref reader);
+                                continue;
+                            }
+
+                            if (reader.ValueTextEquals("values"))
+                            {
+                                Values = reader.ReadIntArray();
                                 continue;
                             }
 
