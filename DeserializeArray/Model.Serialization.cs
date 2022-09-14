@@ -12,7 +12,7 @@ namespace DeserializeArray
     public partial class Model : IUtf8JsonSerializable, IUtf8JsonDeserializable
     {
         // These are internal in client libraries.
-        void IUtf8JsonSerializable.Write(Utf8JsonWriter writer)
+        public void Write(Utf8JsonWriter writer)
         {
             writer.WriteStartObject();
             writer.WritePropertyName("foo");
