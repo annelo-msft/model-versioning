@@ -47,7 +47,7 @@ namespace Azure.Core
                         break;
 
                     default:
-                        throw new FormatException();
+                        throw new NotSupportedException("Not supported token type " + reader.TokenType);
                 }
             }
 

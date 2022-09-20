@@ -35,14 +35,13 @@ namespace DeserializeArray
             writer.Flush();
         }
 
-        public static ChildModel Deserialize(ref Utf8JsonReader reader)
+        internal static ChildModel Deserialize(ref Utf8JsonReader reader)
         {
             IUtf8JsonDeserializable model = new ChildModel();
             model.Read(ref reader);
             return (ChildModel)model;
         }
 
-        // These are internal in client libraries.
         void IUtf8JsonDeserializable.Read(ref Utf8JsonReader reader)
         {
             while (reader.Read())

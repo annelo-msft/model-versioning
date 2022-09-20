@@ -16,7 +16,10 @@ string jsonIn = @"{
   ""requiredDouble"": 2.5,
   ""requiredBoolean"": true,
   ""requiredDateTime"": ""2019-08-01T00:00:00-07:00"",
-  ""requiredDuration"": ""PT1S""
+  ""requiredDuration"": ""PT1S"",
+  ""requiredStringArray"": [ ""a"", ""b"", ""c"" ],
+  ""requiredIntArray"": [ 1, 2, 3 ],
+  ""requiredChildModelArray"": [ { ""qux"": 1, ""thud"": true },  { ""qux"": 2, ""thud"": false },  { ""qux"": 3, ""thud"": true } ]
 }";
 
 // Model with ChildModel

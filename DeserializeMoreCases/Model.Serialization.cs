@@ -40,6 +40,39 @@ namespace DeserializeArray
             writer.WritePropertyName("requiredBoolean");
             writer.WriteBooleanValue(RequiredBoolean);
 
+            if (RequiredStringArray != null)
+            {
+                writer.WritePropertyName("requiredStringArray");
+                writer.WriteStartArray();
+                foreach (var item in RequiredStringArray)
+                {
+                    writer.WriteStringValue(item);
+                }
+                writer.WriteEndArray();
+            }
+
+            if (RequiredIntArray != null)
+            {
+                writer.WritePropertyName("requiredIntArray");
+                writer.WriteStartArray();
+                foreach (var item in RequiredIntArray)
+                {
+                    writer.WriteNumberValue(item);
+                }
+                writer.WriteEndArray();
+            }
+
+            if (RequiredChildModelArray != null)
+            {
+                writer.WritePropertyName("requiredChildModelArray");
+                writer.WriteStartArray();
+                foreach (var item in RequiredChildModelArray)
+                {
+                    writer.WriteObjectValue(item);
+                }
+                writer.WriteEndArray();
+            }
+
             if (UnknownProperties != null)
             {
                 foreach (var property in UnknownProperties)
@@ -136,6 +169,34 @@ namespace DeserializeArray
                             {
                                 reader.Skip();
                                 RequiredBoolean = reader.GetBoolean();
+                                continue;
+                            }
+
+                            if (reader.ValueTextEquals("requiredIntArray"))
+                            {
+                                reader.Read(); // Advance to StartArray
+                                RequiredIntArray = new List<int>();
+                                while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
+                                {
+                                    RequiredIntArray.Add(reader.GetInt32());
+                                }
+                                continue;
+                            }
+
+                            if (reader.ValueTextEquals("requiredStringArray"))
+                            {
+                                reader.Read();
+                                RequiredStringArray = new List<string>();
+                                while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
+                                {
+                                    RequiredStringArray.Add(reader.GetString());
+                                }
+                                continue;
+                            }
+
+                            if (reader.ValueTextEquals("children"))
+                            {
+                                RequiredChildModelArray = reader.ReadObjectArray<ChildModel>();
                                 continue;
                             }
 
