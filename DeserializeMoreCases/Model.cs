@@ -10,16 +10,20 @@ namespace DeserializeArray
 {
     public partial class Model
     {
-        public Model() { }
+        // This should be internal so users can't access it publicly
+        public Model()
+        {
+            // TODO: initialize reference types?
+        }
 
         public string RequiredString { get; internal set; }
 
         public int RequiredInt { get; internal set; }
 
         public long RequiredLong { get; internal set; }
-                
+
         public float RequiredFloat { get; internal set; }
-        
+
         public double RequiredDouble { get; internal set; }
 
         public bool RequiredBoolean { get; internal set; }

@@ -194,9 +194,14 @@ namespace DeserializeArray
                                 continue;
                             }
 
-                            if (reader.ValueTextEquals("children"))
+                            if (reader.ValueTextEquals("requiredChildModelArray"))
                             {
-                                RequiredChildModelArray = reader.ReadObjectArray<ChildModel>();
+                                reader.Read();
+                                RequiredChildModelArray = new List<ChildModel>();
+                                while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
+                                {
+                                    RequiredChildModelArray.Add(ChildModel.Deserialize(ref reader));
+                                }
                                 continue;
                             }
 
@@ -214,7 +219,7 @@ namespace DeserializeArray
                         break;
 
                     default:
-                        // Silent - log a warning.
+                        throw new NotSupportedException("Not supported token type " + reader.TokenType);
                         break;
                 }
             }
