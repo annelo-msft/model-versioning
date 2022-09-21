@@ -114,13 +114,20 @@ namespace DeserializeArray
 
                             if (reader.ValueTextEquals("values"))
                             {
-                                Values = reader.ReadIntArray();
+                                reader.Read(); // Advance to StartArray
+
+                                Values = new List<int>();
+                                while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
+                                {
+                                    Values.Add(reader.GetInt32());
+                                }
+
                                 continue;
                             }
 
                             if (reader.ValueTextEquals("children"))
                             {
-                                Children = reader.ReadArray<ChildModel>();
+                                Children = reader.ReadObjectArray<ChildModel>();
                                 continue;
                             }
 

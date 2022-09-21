@@ -14,6 +14,9 @@ namespace Azure.Core
 {
     internal static class Utf8JsonReaderExtensions
     {
+     	// I'd like to be able to generalize this to ReadArray<T>, 
+		// but it looks like I'd have to do if/else on type matching, 
+		// and I'm not sure that adds value.
         public static List<int> ReadIntArray(this Utf8JsonReader reader)
         {
             List<int> list = new();
@@ -39,11 +42,10 @@ namespace Azure.Core
 
             return list;
         }
-
         // The `new()` constraint will require models to be generated with internal 
         // parameterless constructors.  I don't think that is a problem if it does 
         // appropriate initialization.
-        public static List<T> ReadArray<T>(this ref Utf8JsonReader reader) where T : IUtf8JsonDeserializable, new()
+        public static List<T> ReadObjectArray<T>(this ref Utf8JsonReader reader) where T : IUtf8JsonDeserializable, new()
         {
             List<T> list = new();
 

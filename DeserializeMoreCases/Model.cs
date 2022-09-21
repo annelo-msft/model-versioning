@@ -13,7 +13,6 @@ namespace DeserializeArray
         // This should be internal so users can't access it publicly
         public Model()
         {
-            // TODO: initialize reference types?
         }
 
         public string RequiredString { get; internal set; }
