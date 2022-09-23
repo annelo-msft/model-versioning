@@ -71,7 +71,6 @@ namespace Azure.AI.TextAnalytics.Models
 
                             if (reader.ValueTextEquals(b_error))
                             {
-                                reader.Skip();
                                 Error = TextAnalyticsError.Deserialize(ref reader);
                                 continue;
                             }

@@ -101,33 +101,32 @@ namespace Azure.AI.TextAnalytics.Models
 
                             if (reader.ValueTextEquals(b_confidencescores))
                             {
-                                reader.Skip();
                                 ConfidenceScores = TargetConfidenceScoreLabel.Deserialize(ref reader);
                                 continue;
                             }
 
-                            if (reader.ValueTextEquals(b_confidencescores))
+                            if (reader.ValueTextEquals(b_offset))
                             {
                                 reader.Skip();
                                 Offset = reader.GetInt32();
                                 continue;
                             }
 
-                            if (reader.ValueTextEquals(b_confidencescores))
+                            if (reader.ValueTextEquals(b_length))
                             {
                                 reader.Skip();
                                 Length = reader.GetInt32();
                                 continue;
                             }
 
-                            if (reader.ValueTextEquals(b_confidencescores))
+                            if (reader.ValueTextEquals(b_text))
                             {
                                 reader.Skip();
                                 Text = reader.GetString();
                                 continue;
                             }
 
-                            if (reader.ValueTextEquals(b_confidencescores))
+                            if (reader.ValueTextEquals(b_isnegated))
                             {
                                 reader.Skip();
                                 IsNegated = reader.GetBoolean();

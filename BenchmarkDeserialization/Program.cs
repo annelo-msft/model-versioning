@@ -14,31 +14,36 @@ class Program
 }
 
 
-//byte[] utf8In = Encoding.UTF8.GetBytes(MyClass.jsonIn);
+//byte[] utf8In = Encoding.UTF8.GetBytes(TextAnalyticsJson.SentimentResponse);
+
 //using var document = JsonDocument.Parse(utf8In);
 //var model = SentimentResponse.DeserializeSentimentResponse(document.RootElement);
+
+//var reader = new Utf8JsonReader(utf8In);
+//var model = SentimentResponse.Deserialize(ref reader);
+
 //Console.ReadLine();
 
 
 [MemoryDiagnoser]
 public class MyClass
 {
-    //string jsonIn = TextAnalyticsJson.SentimentResponse;
+    string jsonIn = TextAnalyticsJson.SentimentResponse;
 
-    // Model with reference and value types
-    static string jsonIn = @"{
-          ""requiredString"": ""Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ "",
-          ""requiredInt"": 7,
-          ""requiredLong"": 8,
-          ""requiredFloat"": 1.5,
-          ""requiredDouble"": 2.5,
-          ""requiredBoolean"": true,
-          ""requiredDateTime"": ""2019-08-01T00:00:00-07:00"",
-          ""requiredDuration"": ""PT1S"",
-          ""requiredStringArray"": [ ""a"", ""b"", ""c"" ],
-          ""requiredIntArray"": [ 1, 2, 3 ],
-          ""requiredChildModelArray"": [ { ""qux"": 1, ""thud"": true },  { ""qux"": 2, ""thud"": false },  { ""qux"": 3, ""thud"": true } ]
-        }";
+    //// Model with reference and value types
+    //static string jsonIn = @"{
+    //      ""requiredString"": ""Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ Really Long String of Text 01234567890;#$%^ "",
+    //      ""requiredInt"": 7,
+    //      ""requiredLong"": 8,
+    //      ""requiredFloat"": 1.5,
+    //      ""requiredDouble"": 2.5,
+    //      ""requiredBoolean"": true,
+    //      ""requiredDateTime"": ""2019-08-01T00:00:00-07:00"",
+    //      ""requiredDuration"": ""PT1S"",
+    //      ""requiredStringArray"": [ ""a"", ""b"", ""c"" ],
+    //      ""requiredIntArray"": [ 1, 2, 3 ],
+    //      ""requiredChildModelArray"": [ { ""qux"": 1, ""thud"": true },  { ""qux"": 2, ""thud"": false },  { ""qux"": 3, ""thud"": true } ]
+    //    }";
 
     [Benchmark]
     public void UseUtf8JsonReader()

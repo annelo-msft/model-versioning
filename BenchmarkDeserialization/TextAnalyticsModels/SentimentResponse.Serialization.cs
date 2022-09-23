@@ -119,7 +119,6 @@ namespace Azure.AI.TextAnalytics.Models
 
                             if (reader.ValueTextEquals(b_statistics))
                             {
-                                reader.Skip();
                                 Statistics = RequestStatistics.Deserialize(ref reader);
                                 continue;
                             }

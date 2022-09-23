@@ -41,7 +41,7 @@ namespace Azure.AI.TextAnalytics.Models
             return (TargetRelation)model;
         }
 
-        static readonly byte[] b_relationtype = Encoding.UTF8.GetBytes("relationtype");
+        static readonly byte[] b_relationtype = Encoding.UTF8.GetBytes("relationType");
         static readonly byte[] b_ref = Encoding.UTF8.GetBytes("ref");
 
         void IUtf8JsonDeserializable.Read(ref Utf8JsonReader reader)

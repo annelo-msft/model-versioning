@@ -41,7 +41,7 @@ namespace Azure.AI.TextAnalytics.Models
             return (TargetConfidenceScoreLabel)model;
         }
 
-        static readonly byte[] b_postive = Encoding.UTF8.GetBytes("postive");
+        static readonly byte[] b_positive = Encoding.UTF8.GetBytes("positive");
         static readonly byte[] b_negative = Encoding.UTF8.GetBytes("negative");
 
         void IUtf8JsonDeserializable.Read(ref Utf8JsonReader reader)
@@ -64,7 +64,7 @@ namespace Azure.AI.TextAnalytics.Models
 
                     case JsonTokenType.PropertyName:
                         {
-                            if (reader.ValueTextEquals(b_postive))
+                            if (reader.ValueTextEquals(b_positive))
                             {
                                 reader.Skip();
                                 Positive = reader.GetDouble();

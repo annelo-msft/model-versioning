@@ -135,7 +135,6 @@ namespace Azure.AI.TextAnalytics.Models
 
                             if (reader.ValueTextEquals(b_confidencescores))
                             {
-                                reader.Skip();
                                 ConfidenceScores = SentimentConfidenceScorePerLabel.Deserialize(ref reader);
                                 continue;
                             }

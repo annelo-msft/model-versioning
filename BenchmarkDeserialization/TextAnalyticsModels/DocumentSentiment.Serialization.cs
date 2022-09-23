@@ -83,7 +83,7 @@ namespace Azure.AI.TextAnalytics.Models
         static readonly byte[] b_id = Encoding.UTF8.GetBytes("id");
         static readonly byte[] b_sentiment = Encoding.UTF8.GetBytes("sentiment");
         static readonly byte[] b_statistics = Encoding.UTF8.GetBytes("statistics");
-        static readonly byte[] b_confidencescores = Encoding.UTF8.GetBytes("confidencescores");
+        static readonly byte[] b_confidencescores = Encoding.UTF8.GetBytes("confidenceScores");
         static readonly byte[] b_sentences = Encoding.UTF8.GetBytes("sentences");
         static readonly byte[] b_warnings = Encoding.UTF8.GetBytes("warnings");
 
@@ -123,14 +123,12 @@ namespace Azure.AI.TextAnalytics.Models
 
                             if (reader.ValueTextEquals(b_statistics))
                             {
-                                reader.Skip();
                                 Statistics = DocumentStatistics.Deserialize(ref reader);
                                 continue;
                             }
 
                             if (reader.ValueTextEquals(b_confidencescores))
                             {
-                                reader.Skip();
                                 ConfidenceScores = SentimentConfidenceScorePerLabel.Deserialize(ref reader);
                                 continue;
                             }

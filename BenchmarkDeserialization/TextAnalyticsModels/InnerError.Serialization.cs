@@ -138,7 +138,6 @@ namespace Azure.AI.TextAnalytics.Models
 
                             if (reader.ValueTextEquals(b_innererror))
                             {
-                                reader.Skip();
                                 Innererror = InnerError.Deserialize(ref reader);
                                 continue;
                             }
