@@ -50,7 +50,7 @@ public class MyClass
     {
         byte[] utf8In = Encoding.UTF8.GetBytes(jsonIn);
         Utf8JsonReader jsonReader = new Utf8JsonReader(utf8In);
-        Model model = Model.Deserialize(ref jsonReader);
+        SentimentResponse model = SentimentResponse.Deserialize(ref jsonReader);
     }
 
     [Benchmark]
@@ -58,7 +58,7 @@ public class MyClass
     {
         byte[] utf8In = Encoding.UTF8.GetBytes(jsonIn);
         using var document = JsonDocument.Parse(utf8In);
-        Model model = Model.DeserializeModel(document.RootElement);
+        SentimentResponse model = SentimentResponse.DeserializeSentimentResponse(document.RootElement);
     }
 }
 
